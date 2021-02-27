@@ -1,0 +1,62 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "settings": {
+      "auth": "noauth"
+    }
+  },
+  "inboundDetour": [
+		{
+			"domainOverride": ["tls","http"],
+			"port": 6946,
+			"protocol": "dokodemo-door",
+			"settings": {
+				"network": "tcp",
+				"followRedirect": true
+			}
+		}
+	],
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "35.194.168.71",
+          "port": 8080,
+          "users": [
+            {
+              "id": "733287fd-0319-447e-9697-648b1204dca7",
+              "alterId": 64
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "tcpSettings": {
+        "header": { 
+          "type": "http",
+          "request": {
+            "version": "1.1",
+            "method": "GET",
+            "path": ["/"],
+            "headers": {
+              "Host": ["k.youku.com"],
+              "User-Agent": [
+                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36"
+              ],
+              "Accept-Encoding": ["gzip, deflate"],
+              "Connection": ["keep-alive"],
+              "Pragma": "no-cache"
+            }
+          }
+        }
+      }
+    }
+  }
+}

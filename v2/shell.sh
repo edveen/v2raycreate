@@ -1,0 +1,1 @@
+/usr/bin/v2ray/v2ray -config ./configorg.json > /dev/null 2>&1 &
